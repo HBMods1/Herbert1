@@ -60,7 +60,7 @@ async function startGojoMdNx() {
     const GojoMdNx = NexusNwIncConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['Gojo Satoru\Nexus','Safari','1.0.0'],
+        browser: ['HBWABot','Safari','1.0.0'],
         auth: state
     })
 
@@ -150,11 +150,19 @@ Tol = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURICom
 
 ⭐✑ Description: ${metadata.desc}
 
-⭐✑ Welcome To Our Comfortable Happy😋, Sometimes Loud😜, Usually Messy🤥, Full Of Love🥰, HOME😌!!`} )
-                } else if (anu.action == 'remove') {
-                    GojoMdNx.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `⭐✑ @${num.split("@")[0]} Left ${metadata.subject}
 
-⭐✑ I'm Not Sure If It Was A Goodbye Charm, But It Was Fun While It Lasted 😌✨` })
+⭐✑ Members : ${xmembers}th
+⭐✑ Joined :  ${xtime} ${xdate} `})
+                } else if (anu.action == 'remove') {
+                    GojoMdNx.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `
+⭐✑ Goodbye👋 @${num.split("@")[0]} 
+⭐✑ Left ${metadata.subject}
+
+⭐✑ Description: ${metadata.desc}
+
+
+⭐✑ Description: ${metadata.desc}
+⭐✑ Joined :  ${xtime} ${xdate} `})
                 }
             }
         } catch (err) {
@@ -201,7 +209,8 @@ Tol = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURICom
 	for (let i of kon) {
 	    list.push({
 	    	displayName: await GojoMdNx.getName(i + '@s.whatsapp.net'),
-	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${ownername}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click To Chat\nitem2.EMAIL;type=INTERNET:${sc}\nitem2.X-ABLabel:Script\nitem3.URL:${myweb}\nitem3.X-ABLabel:Script\nitem4.ADR:;;${region};;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await GojoMdNx.getName(i + '@s.whatsapp.net')}\nFN:${global.ownername}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click here to chat\nitem2.EMAIL;type=INTERNET: HBMods Channel \nitem2.X-ABLabel:YouTube\nitem3.URL: https://youtube.com/c/HBSuantakOfficialChannel\nitem3.X-ABLabel:GitHub\nitem4.ADR:;;${global.location};;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+	    	  ////////////////////////////////////////////////////////////vcard: BEGIN:VCARD\nVERSION:3.0\nN:${await GojoMdNx.getName(i + '@s.whatsapp.net')}\nFN:${global.ownername}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click here to chat\nitem2.EMAIL;type=INTERNET: HBMods Channel \nitem2.X-ABLabel:YouTube\nitem3.URL: https://youtube.com/c/HBSuantakOfficialChannel\nitem3.X-ABLabel:GitHub\nitem4.ADR:;;${global.location};;;;\nitem4.X-ABLabel:Region\nEND:VCARD 
 	    })
 	}
 	GojoMdNx.sendMessage(jid, { contacts: { displayName: `${list.length} Contact`, contacts: list }, ...opts }, { quoted })
@@ -233,13 +242,13 @@ Tol = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURICom
         if (connection === 'close') {
         let reason = new Boom(lastDisconnect?.error)?.output.statusCode
             if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); GojoMdNx.logout(); }
-            else if (reason === DisconnectReason.connectionClosed) { console.log("🐦Connection closed, reconnecting...."); startGojoMdNx(); }
-            else if (reason === DisconnectReason.connectionLost) { console.log("🐦Connection Lost from Server, reconnecting..."); startGojoMdNx(); }
-            else if (reason === DisconnectReason.connectionReplaced) { console.log("🐦Connection Replaced, Another New Session Opened, Please Close Current Session First"); GojoMdNx.logout(); }
-            else if (reason === DisconnectReason.loggedOut) { console.log(`🐦Device Logged Out, Please Scan Again And Run.`); GojoMdNx.logout(); }
-            else if (reason === DisconnectReason.restartRequired) { console.log("🐦Restart Required, Restarting..."); startGojoMdNx(); }
-            else if (reason === DisconnectReason.timedOut) { console.log("🐦Connection TimedOut, Reconnecting..."); startGojoMdNx(); }
-            else GojoMdNx.end(`🐦Unknown DisconnectReason: ${reason}|${connection}`)
+            else if (reason === DisconnectReason.connectionClosed) { console.log("🌚Connection closed, reconnecting...."); startGojoMdNx(); }
+            else if (reason === DisconnectReason.connectionLost) { console.log("🌚Connection Lost from Server, reconnecting..."); startGojoMdNx(); }
+            else if (reason === DisconnectReason.connectionReplaced) { console.log("🌚Connection Replaced, Another New Session Opened, Please Close Current Session First"); GojoMdNx.logout(); }
+            else if (reason === DisconnectReason.loggedOut) { console.log(`🌚Device Logged Out, Please Scan Again And Run.`); GojoMdNx.logout(); }
+            else if (reason === DisconnectReason.restartRequired) { console.log("🌚Restart Required, Restarting..."); startGojoMdNx(); }
+            else if (reason === DisconnectReason.timedOut) { console.log("🌚Connection TimedOut, Reconnecting..."); startGojoMdNx(); }
+            else GojoMdNx.end(`🌚Unknown DisconnectReason: ${reason}|${connection}`)
         }
         console.log('Connected...', update)
     })
